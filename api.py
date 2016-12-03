@@ -65,5 +65,23 @@ class TodoResource(Resource):
             return '', 204
         return {'error': 'The specified id was not found in the DB'}, 400
 
+    @marshal_with(todo_fields)
+    def post(self, todo_id):
+
+        current_todo = Todo.query.get(todo_id)
+
+        clone_todo = Todo(
+            task=current_todo.task,
+            done=current_todo.done
+        )
+
+        clone_todo.date = current_todo.date
+
+        db.session.add(clone_todo)
+        db.session.commit()
+
+        return clone_todo, 201
+
 api.add_resource(TodoListResource, '/todos')
 api.add_resource(TodoResource, '/todos/<string:todo_id>')
+api.add_resource(TodoResource, '/todos/clone/<string:todo_id>', endpoint='clone')

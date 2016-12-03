@@ -100,6 +100,10 @@ angular.module('todomvc')
 			store.put(todo);
 		};
 
+		$scope.cloneTodo = function (todo) {
+			store.clone(todo);
+		};
+
 		$scope.toggleCompleted = function (todo, done) {
 			if (angular.isDefined(done)) {
 				todo.done = done;

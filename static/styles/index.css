@@ -238,6 +238,36 @@ label[for='toggle-all'] {
 	display: block;
 }
 
+/* Start of cloning styles */
+
+#todo-list li .clone {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 40px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #005f33;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+}
+
+#todo-list li .clone:hover {
+	color: #007f00;
+}
+
+#todo-list li .clone:after {
+	content: '+';
+}
+
+#todo-list li:hover .clone {
+	display: block;
+}
+
+/* End Cloning Stuff */
 #todo-list li .edit {
 	display: none;
 }

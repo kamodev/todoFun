@@ -27,6 +27,7 @@
 								<input class="toggle" type="checkbox" ng-model="todo.done" ng-change="toggleCompleted(todo)">
 								<label ng-dblclick="editTodo(todo)">{{ '{{todo.task}}' }}</label>
 								<button class="destroy" ng-click="removeTodo(todo)"></button>
+                                <button class="clone" ng-click="cloneTodo(todo)"></button>
 							</div>
 							<form ng-submit="saveEdits(todo, 'submit')">
 								<input class="edit" ng-trim="false" ng-model="todo.task" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')" todo-focus="todo == editedTodo">

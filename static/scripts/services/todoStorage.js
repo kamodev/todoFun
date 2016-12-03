@@ -29,7 +29,11 @@ angular.module('todomvc')
 
 			api: $resource('/api/todos/:id', null,
 				{
-					update: { method:'PUT' }
+					update: { method:'PUT' },
+                    clone: {
+                        method: 'POST',
+                        url: '/api/todos/clone/:id'
+					}
 				}
 			),
 
@@ -81,6 +85,12 @@ angular.module('todomvc')
 			put: function (todo) {
 				return store.api.update({ id: todo.id }, todo)
 					.$promise;
+			},
+
+			clone: function (todo) {
+				return store.api.clone({id: todo.id}, todo, function success(resp) {
+                    store.todos.push(resp);
+                }).$promise;
 			}
 		};
 
